@@ -1,3 +1,11 @@
+## Quick Start
+
+```bash
+git clone https://github.com/vinayprasath/fastapi-messaging_api.git
+cd fastapi-messaging_api
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8001
+
 # FastAPI Messaging API
 
 A simple REST API built using **FastAPI** and **MongoDB** that allows users to send, retrieve, update, and delete messages.
