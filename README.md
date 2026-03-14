@@ -1,34 +1,99 @@
 # FastAPI Messaging API
 
-This project is a simple REST API built using FastAPI and MongoDB.
+A simple REST API built using **FastAPI** and **MongoDB** that allows users to send, retrieve, update, and delete messages.
 
-## Features
-- Send messages using POST API
-- Retrieve stored messages using GET API
-- Data validation using Pydantic
-- MongoDB used as the database
+---
 
-## Technologies Used
+## Tech Stack
+
 - Python
 - FastAPI
 - MongoDB
-- PyMongo
+- Uvicorn
+
+---
+
+## Features
+
+- Send a message
+- Get all messages
+- Update a message
+- Delete a message
+
+---
+
+## Project Structure
+
+```
+fastapi-messaging_api
+│
+├── main.py
+├── routes.py
+├── models.py
+├── database.py
+├── README.md
+├── .gitignore
+```
+
+---
+
+## Installation
+
+Clone the repository
+
+```
+git clone https://github.com/vinayprasath/fastapi-messaging_api.git
+```
+
+Move into the project folder
+
+```
+cd fastapi-messaging_api
+```
+
+Install dependencies
+
+```
+pip install fastapi uvicorn pymongo
+```
+
+Run the server
+
+```
+uvicorn main:app --reload --port 8001
+```
+
+---
 
 ## API Endpoints
 
-POST /send_message  
-Send a message to the server.
+### Send Message
+POST /message
 
-GET /messages  
-Retrieve all stored messages.
+### Get Messages
+GET /messages
 
-## How to Run
+### Update Message
+PUT /message/{id}
 
-1. Install dependencies  
-pip install fastapi uvicorn pymongo
+### Delete Message
+DELETE /message/{id}
 
-2. Start the server  
-uvicorn main:app --reload
+---
 
-3. Open browser  
-http://127.0.0.1:8000/docs
+## API Documentation
+
+FastAPI automatically provides interactive documentation.
+
+Open in browser:
+
+```
+http://localhost:8001/docs
+```
+
+---
+
+## Author
+
+Vinay Prasath  
+B.Tech Artificial Intelligence & Data Science
