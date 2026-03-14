@@ -85,6 +85,10 @@ DELETE /message/{id}
 
 FastAPI automatically provides interactive documentation.
 
+## API Documentation
+
+![FastAPI Docs](docs.png)
+
 Open in browser:
 
 ```
