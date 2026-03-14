@@ -1,6 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter,HTTPException
 from models import Message
 from database import collection
+from bson import ObjectId
+
 
 router = APIRouter()
 
@@ -13,5 +15,35 @@ def send_message(msg: Message):
 
 @router.get("/messages")
 def get_messages():
-    messages = list(collection.find({}, {"_id": 0}))
+    messages = []
+
+    for msg in collection.find():
+        msg["_id"] = str(msg["_id"])
+        messages.append(msg)
+
     return messages
+
+#FOR DELETE MESSAGE API
+
+
+@router.delete("/message/{id}")
+def delete_message(id: str):
+    result = collection.delete_one({"_id": ObjectId(id)})
+
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Message not found")
+
+    return {"status": "Message deleted"}
+
+#for updates msg API
+@router.put("/message/{id}")
+def update_message(id: str, msg: Message):
+    result = collection.update_one(
+        {"_id": ObjectId(id)},
+        {"$set": msg.dict()}
+    )
+
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Message not found")
+
+    return {"status": "Message updated"}
